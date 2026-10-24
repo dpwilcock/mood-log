@@ -5,7 +5,7 @@ SCHEMA = os.environ.get("PGSCHEMA", "DW Health")
 
 conn = psycopg2.connect(dbname=os.environ.get("PGDATABASE", "postgres"))
 cur = conn.cursor()
-cur.execute("""
+cur.execute(f"""
     SELECT EXTRACT(MONTH FROM log_time) AS month, 
            AVG(COALESCE(sentiment_score_dw, sentiment_score_llm)) as avg_score,
            COUNT(*) as count

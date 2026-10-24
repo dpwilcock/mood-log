@@ -23,7 +23,7 @@ def fetch_data():
     """, conn)
     
     # Daily Summary (Health)
-    health = pd.read_sql("""
+    health = pd.read_sql(f"""
         SELECT summary_date as date, sleep_total_min, hrv, resting_heart_rate, steps
         FROM "{SCHEMA}".daily_summary
     """, conn)
@@ -129,7 +129,7 @@ def save_to_db(results):
     cur = conn.cursor()
     
     # Update table to include new columns if they don't exist (just in case)
-    cur.execute("""
+    cur.execute(f"""
         ALTER TABLE "{SCHEMA}".mood_predict ADD COLUMN IF NOT EXISTS meeting_hours NUMERIC;
         ALTER TABLE "{SCHEMA}".mood_predict ADD COLUMN IF NOT EXISTS team_absence_count INTEGER;
         ALTER TABLE "{SCHEMA}".mood_predict ADD COLUMN IF NOT EXISTS personal_event_count INTEGER;
@@ -138,7 +138,7 @@ def save_to_db(results):
     
     # Insert/Upsert
     for _, row in results.iterrows():
-        cur.execute("""
+        cur.execute(f"""
             INSERT INTO "{SCHEMA}".mood_predict (date, predicted_mood, actual_mood, meeting_hours, team_absence_count, personal_event_count, leadership_meeting_count, updated_at)
             VALUES (%s, %s, %s, %s, %s, %s, %s, NOW())
             ON CONFLICT (date) DO UPDATE SET
@@ -158,7 +158,7 @@ def save_to_db(results):
 
 def print_physiological_warning():
     conn = psycopg2.connect(dbname=os.environ.get("PGDATABASE", "postgres"))
-    df = pd.read_sql("""
+    df = pd.read_sql(f"""
         SELECT summary_date, hrv, resting_heart_rate 
         FROM "{SCHEMA}".daily_summary 
         ORDER BY summary_date DESC LIMIT 3

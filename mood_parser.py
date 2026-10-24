@@ -68,7 +68,7 @@ def process_file(filepath):
 
             try:
                 cur.execute(
-                    '''
+                    f'''
                     INSERT INTO "{SCHEMA}".mood_log 
                     (log_time, sentiment_score_dw, sentiment_score_llm, comment, tags)
                     VALUES (%s, %s, %s, %s, %s)
