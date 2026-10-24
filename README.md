@@ -2,8 +2,6 @@
 
 Low friction way to record how the day has been - used with an Ai/LLM agent and messaging software - record verbally, quickly, low friction - makes it easy to just do - with reminder at the right time of day for you.   Low friction is essential to getting a new daily habit done.   This works for me, I hope it can work for you.
 
-The tool Parses mood check-ins, process them with LLM/rule-based pipelines, and model mood vs. physiological/workload data.
-
 Tools for logging and analyzing periodic mood check-ins (e.g. a 1-10 score with a comment), processing them through rule-based or LLM pipelines, and modeling mood against workload and health metrics.
 
 ## Components
