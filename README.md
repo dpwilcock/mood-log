@@ -1,8 +1,8 @@
-# Mood Log & Modeling
+# Verbal Mood Logging
 
-Low friction way to record how the day has been - used with an Ai/LLM agent and messaging software - record verbally, quickly, low friction - makes it easy to just do - with reminder at the right time of day for you.   Low friction is essential to getting a new daily habit done.   This works for me, I hope it can work for you.
+**Verbal mood logging** — the lowest-friction way to record how the day has been: you *speak* your mood check-in as a voice note or text to a messaging app (Telegram), an AI/LLM agent transcribes it (Whisper) and logs it for you. No typing, no forms — just talk, and it's done. Low friction is essential to getting a new daily habit to stick; this works for me, I hope it can work for you.
 
-Tools for logging and analyzing periodic mood check-ins (e.g. a 1-10 score with a comment), processing them through rule-based or LLM pipelines, and modeling mood against workload and health metrics.
+Tools for logging and analyzing periodic mood check-ins (e.g. a 1-10 score with a comment) captured verbally, processing them through rule-based or LLM pipelines, and modeling mood against workload and health metrics.
 
 ## Components
 
@@ -52,4 +52,4 @@ python3 mood_modeling_v2.py
 `mood_parser.py` also supports `all` (process every `.md` in `MOOD_NOTES_DIR`) and
 `process_moods_*.py` all process every file in `MOOD_DIR`.
 
-The pattern is deliberately backend-agnostic: swap the processor to match whatever scoring or model service you prefer.
+The pattern is deliberately backend-agnostic: swap the processor to match whatever scoring or model service you prefer. The agent-side prompt/harness that turns a voice note into a `mood_parser.py`-ready line lives with the agent (OpenClaw) — this repo holds the parsing/modeling pipeline.
